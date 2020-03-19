@@ -1,0 +1,20 @@
+{
+  "evalContext": {
+    "entityID": "randomly_generated_908712433",
+    "flagKey": "color"
+  },
+  "evalDebugLog": {
+    "segmentDebugLogs": []
+  },
+  "flagID": 1,
+  "flagKey": "color",
+  "flagSnapshotID": 28,
+  "segmentID": 4,
+  "timestamp": "2020-03-22T09:20:09Z",
+  "variantAttachment": {
+    "hex": "#FF0000",
+    "name": "red"
+  },
+  "variantID": 3,
+  "variantKey": "red"
+}
