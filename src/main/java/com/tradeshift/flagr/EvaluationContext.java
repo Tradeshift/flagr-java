@@ -39,9 +39,9 @@ public class EvaluationContext {
         return entity;
     }
 
-    public <T> void setEntityContext(T entityContext, Class<T> entityClass) {
+    public <T> void setEntityContext(T entityContext) {
         Gson gson = new Gson();
-        this.entityContext = gson.toJsonTree(entityContext, entityClass);
+        this.entityContext = gson.toJsonTree(entityContext);
     }
 
     public String getEntityID() {
