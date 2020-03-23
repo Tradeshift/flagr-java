@@ -3,10 +3,18 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-
   <groupId>com.tradeshift</groupId>
   <artifactId>flagr-java</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>0.9.0</version>
+  <name>${project.groupId}:${project.artifactId}</name>
+  <description>A client library for Flagr (https://github.com/checkr/flagr).</description>
+  <url>https://github.com/Tradeshift/flagr-java</url>
+  <licenses>
+    <license>
+      <name>ISC License</name>
+      <url>https://opensource.org/licenses/ISC</url>
+    </license>
+  </licenses>
   <properties>
     <maven.compiler.source>8</maven.compiler.source>
     <maven.compiler.target>8</maven.compiler.target>
@@ -20,6 +28,12 @@
       <version>4.12</version>
       <scope>test</scope>
     </dependency>
+        <dependency>
+          <groupId>com.squareup.okhttp</groupId>
+          <artifactId>mockwebserver</artifactId>
+          <version>2.7.5</version>
+          <scope>test</scope>
+        </dependency>
     <dependency>
       <groupId>com.squareup.okhttp3</groupId>
       <artifactId>okhttp</artifactId>
@@ -31,11 +45,36 @@
       <artifactId>gson</artifactId>
       <version>2.8.6</version>
     </dependency>
-    <dependency>
-      <groupId>com.squareup.okhttp</groupId>
-      <artifactId>mockwebserver</artifactId>
-      <version>2.7.5</version>
-      <scope>test</scope>
-    </dependency>
   </dependencies>
+  <developers>
+    <developer>
+      <name>Benjamin Nørgaard</name>
+      <email>benjamin.noergaard@tradeshift.com</email>
+      <organization>Tradeshift</organization>
+      <organizationUrl>http://www.tradeshift.com</organizationUrl>
+    </developer>
+    <developer>
+      <name>Francisco Alves</name>
+      <email>francisco.alves@tradeshift.com</email>
+      <organization>Tradeshift</organization>
+      <organizationUrl>http://www.tradeshift.com</organizationUrl>
+    </developer>
+    <developer>
+      <name>Pavel Gonchukov</name>
+      <email>pavel.gonchukov@tradeshift.com</email>
+      <organization>Tradeshift</organization>
+      <organizationUrl>http://www.tradeshift.com</organizationUrl>
+    </developer>
+    <developer>
+      <name>Søren Mathiasen</name>
+      <email>smo@tradeshift.com</email>
+      <organization>Tradeshift</organization>
+      <organizationUrl>http://www.tradeshift.com</organizationUrl>
+    </developer>
+  </developers>
+  <scm>
+    <connection>scm:git:git://github.com/Tradeshift/flagr-java.git</connection>
+    <developerConnection>scm:git:git://github.com/Tradeshift/flagr-java.git</developerConnection>
+    <url>https://github.com/Tradeshift/flagr-java/tree/master</url>
+  </scm>
 </project>
