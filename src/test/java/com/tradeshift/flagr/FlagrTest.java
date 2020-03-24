@@ -86,7 +86,7 @@ public class FlagrTest {
         MockWebServer mockServer = TestUtils.createMockServerThatReturns("segment_devprod");
 
         Team team = new Team("devprod");
-        context.setEntityContext(team, Team.class);
+        context.setEntityContext(team);
         EvaluationResponse response = flagr.evaluate(context);
         assertEquals("blue", response.getVariantKey());
 
@@ -99,7 +99,7 @@ public class FlagrTest {
 
         Team team = new Team("devprod");
         EvaluationContext flagrContext = new EvaluationContext("color");
-        flagrContext.setEntityContext(team, Team.class);
+        flagrContext.setEntityContext(team);
         EvaluationResponse response = flagr.evaluate(flagrContext);
         Color color = response.getVariantAttachment(Color.class);
         assertEquals("#0000FF", color.hex);

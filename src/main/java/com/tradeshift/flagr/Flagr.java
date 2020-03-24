@@ -11,17 +11,20 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
+/*
+* Talks to Flagr API on host.
+* */
 public class Flagr {
-    // Endpoint for the evaluation API on Flagr
+    /* Endpoint for the evaluation API on Flagr */
     private static final String EVALUATION_ENDPOINT = "/api/v1/evaluation";
 
-    // Media type used to post the EvaluationContext
+    /* Media type used to post the EvaluationContext */
     private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
     private String host;
     private OkHttpClient http;
 
-
+    /* creates a new instance of the client. */
     Flagr(String host) {
         this.host = host;
         this.http = new OkHttpClient();
@@ -51,6 +54,11 @@ public class Flagr {
         return response.body().charStream();
     }
 
+    /*
+    * Calls evaluation API with the specified context
+    * <p>
+    * the context needs to specify a flagID or FlagKey
+    * */
     public EvaluationResponse evaluate(EvaluationContext context) {
         Reader responseBody;
         String jsonContext = serialize(context);
