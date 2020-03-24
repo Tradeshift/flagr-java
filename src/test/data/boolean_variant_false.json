@@ -1,0 +1,17 @@
+{
+  "evalContext": {
+    "entityID": "randomly_generated_776971353",
+    "flagKey": "onOffFlag"
+  },
+  "evalDebugLog": {
+    "segmentDebugLogs": []
+  },
+  "flagID": 2,
+  "flagKey": "onOffFlag",
+  "flagSnapshotID": 43,
+  "segmentID": 6,
+  "timestamp": "2020-03-24T15:29:54Z",
+  "variantAttachment": {},
+  "variantID": 4,
+  "variantKey": "false"
+}

@@ -46,6 +46,7 @@ a variant attachment and describing it's properties on Flagr UI. Suppose
 color has the properties name and hexadecimal, the code would look like:
 ````java
 flagr = new Flagr(FLAGR_HOST);
+Client client = new Client("Søren", "Tradeshift");
 try {
     EvaluationContext context = new EvaluationContext("background_color");
     context.setEntityContext(client); // Sends client info to Flagr so you can filter by one of it's properties on the UI.
@@ -55,6 +56,33 @@ try {
     System.out.println(response.getVariantKey(color.getHex())); // This would return #FF0000 for example.
 } catch (FlagrException e) {
     e.printStackTrace();
+}
+````
+
+If the values from `EvaluationResponse` class doesn't matter and only a Color is needed:
+````java
+flagr = new Flagr(FLAGR_HOST);
+Optional<Color> color = flagr.evaluateVariantAttachment(
+        new EvaluationContext("color"),
+        Color.class,
+);
+if (color.isPresent()){
+    System.out.println(color.get().getName()); //do something with the color
+}
+````
+
+When only the variant matters, use:
+````java
+flagr = new Flagr(FLAGR_HOST);
+Optional<String> variantKey = flagr.evaluateVariantKey(new EvaluationContext("myflag")));
+````
+
+And if it's just a simple on/off flag. Use the `evaluateBoolean` method. 
+It returns true if the variant evaluates to "true", "enabled" or "on" otherwise it returns false.:
+````java
+flagr = new Flagr(FLAGR_HOST);
+if (flagr.evaluateEnabled(new EvaluationContext("onOffFlag"))) {
+    System.out.println("Enabled!"); // or whatever needs to be done.
 }
 ````
 
