@@ -10,4 +10,4 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 13
-      - run: mvn clean compile test
+      - run: mvn compile test
