@@ -1,10 +1,12 @@
 package com.tradeshift.flagr;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.IOException;
+import java.util.Optional;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -106,5 +108,87 @@ public class FlagrTest {
 
         mockServer.shutdown();
     }
-    //TODO test disabled flag
+
+    @Test
+    public void testEvaluateBooleanThrowsFlagrException() {
+        flagr = new Flagr("http://wrongconfig:18000");
+        try {
+            flagr.evaluateEnabled(new EvaluationContext("onOffFlag"));
+            fail("Expected a FlagrException to be thrown");
+        } catch (FlagrException e) {
+            assertTrue(e.getMessage().contains("Unable to reach flagr"));
+        }
+    }
+
+    @Test
+    public void testEvaluateBooleanReturnsTrue() throws IOException {
+        MockWebServer mockServer = TestUtils.createMockServerThatReturns("boolean_variant_true");
+        Boolean enabled = flagr.evaluateEnabled(new EvaluationContext("onOffFlag"));
+        assertTrue(enabled);
+        mockServer.shutdown();
+    }
+
+    @Test
+    public void testEvaluateBooleanReturnsFalse() throws IOException {
+        MockWebServer mockServer = TestUtils.createMockServerThatReturns("boolean_variant_false");
+        Boolean enabled = flagr.evaluateEnabled(new EvaluationContext("onOffFlag"));
+        assertFalse(enabled);
+        mockServer.shutdown();
+    }
+
+    @Test
+    public void testEvaluateBooleanReturnsFalseWhenFlagDisabled() throws IOException {
+        MockWebServer mockServer = TestUtils.createMockServerThatReturns("boolean_variant_disabled_flag");
+        Boolean enabled = flagr.evaluateEnabled(new EvaluationContext("onOffFlag"));
+        assertFalse(enabled);
+        mockServer.shutdown();
+    }
+
+    @Test
+    public void testEvaluateAndGetVariantAttachment() throws IOException {
+        MockWebServer mockServer = TestUtils.createMockServerThatReturns("segment_default");
+        Optional<Color> color = flagr.evaluateVariantAttachment(new EvaluationContext("color"), Color.class);
+        assertTrue(color.isPresent());
+        assertEquals("#FF0000", color.get().hex);
+        mockServer.shutdown();
+    }
+
+    @Test
+    public void testEvaluateAndGetVariantAttachmentThrowsFlagrException() {
+        flagr = new Flagr("http://wrongconfig:18000");
+        try {
+            Optional<Color> color = flagr.evaluateVariantAttachment(
+                    new EvaluationContext("color"),
+                    Color.class
+            );
+            fail("Expected a FlagrException to be thrown");
+        } catch (FlagrException e) {
+            assertTrue(e.getMessage().contains("Unable to reach flagr"));
+        }
+    }
+
+    @Test
+    public void testEvaluateAndGetVariantThrowsFlagrException() {
+        flagr = new Flagr("http://wrongconfig:18000");
+        try {
+            Optional<String> color = flagr.evaluateVariantKey(
+                    new EvaluationContext("color")
+            );
+            fail("Expected a FlagrException to be thrown");
+        }
+        catch (FlagrException e) {
+            assertTrue(e.getMessage().contains("Unable to reach flagr"));
+        }
+    }
+
+    @Test
+    public void testEvaluateAndGetVariant() throws IOException {
+        MockWebServer mockServer = TestUtils.createMockServerThatReturns("segment_default");
+        Optional<String> color = flagr.evaluateVariantKey(
+                new EvaluationContext("color")
+        );
+        assertTrue(color.isPresent());
+        assertEquals("red", color.get());
+        mockServer.shutdown();
+    }
 }

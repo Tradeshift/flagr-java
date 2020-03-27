@@ -1,0 +1,13 @@
+{
+  "evalContext": {
+    "flagKey": "onOffFlag"
+  },
+  "evalDebugLog": {
+    "msg": "flagID 2 is not enabled",
+    "segmentDebugLogs": null
+  },
+  "flagID": 2,
+  "flagKey": "onOffFlag",
+  "flagSnapshotID": 44,
+  "timestamp": "2020-03-24T15:32:37Z"
+}

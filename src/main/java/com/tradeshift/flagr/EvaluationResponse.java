@@ -13,20 +13,21 @@ public class EvaluationResponse {
     private Long variantID;
     private String variantKey;
 
-    // TODO: this probably needs it's own class
     private JsonElement variantAttachment;
     private EvaluationContext evaluationContext;
     private Timestamp timestamp;
     private EvalDebugLog evalDebugLog;
 
-    public EvaluationResponse(Long flagID, String flagKey, Long flagSnapshotID, Long segmentID, Long variantID, String variantKey, JsonElement variantAttachment, EvaluationContext evaluationContext, Timestamp timestamp, EvalDebugLog evalDebugLog) {
+    public <T> EvaluationResponse(Long flagID, String flagKey, Long flagSnapshotID, Long segmentID, Long variantID, String variantKey, T variantAttachment, EvaluationContext evaluationContext, Timestamp timestamp, EvalDebugLog evalDebugLog) {
+        Gson gson = new Gson();
+        this.variantAttachment = gson.toJsonTree(variantAttachment);
+
         this.flagID = flagID;
         this.flagKey = flagKey;
         this.flagSnapshotID = flagSnapshotID;
         this.segmentID = segmentID;
         this.variantID = variantID;
         this.variantKey = variantKey;
-        this.variantAttachment = variantAttachment;
         this.evaluationContext = evaluationContext;
         this.timestamp = timestamp;
         this.evalDebugLog = evalDebugLog;
