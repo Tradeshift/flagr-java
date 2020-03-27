@@ -157,7 +157,7 @@ public class FlagrTest {
     public void testEvaluateAndGetVariantAttachmentThrowsFlagrException() {
         flagr = new Flagr("http://wrongconfig:18000");
         try {
-            Optional<Color> color = flagr.evaluateVariantAttachment(
+            flagr.evaluateVariantAttachment(
                     new EvaluationContext("color"),
                     Color.class
             );
@@ -171,7 +171,7 @@ public class FlagrTest {
     public void testEvaluateAndGetVariantThrowsFlagrException() {
         flagr = new Flagr("http://wrongconfig:18000");
         try {
-            Optional<String> color = flagr.evaluateVariantKey(
+            flagr.evaluateVariantKey(
                     new EvaluationContext("color")
             );
             fail("Expected a FlagrException to be thrown");
