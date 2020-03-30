@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.tradeshift</groupId>
   <artifactId>flagr-java</artifactId>
-  <version>0.9.0-SNAPSHOT</version>
+  <version>0.9.0</version>
   <name>${project.groupId}:${project.artifactId}</name>
   <description>A client library for Flagr (https://github.com/checkr/flagr).</description>
   <url>https://github.com/Tradeshift/flagr-java</url>
@@ -112,6 +112,6 @@
     <connection>scm:git:git@github.com:Tradeshift/flagr-java.git</connection>
     <developerConnection>scm:git:git@github.com:Tradeshift/flagr-java.git</developerConnection>
     <url>https://github.com/Tradeshift/flagr-java/tree/master</url>
-    <tag>HEAD</tag>
+    <tag>flagr-java-0.9.0</tag>
   </scm>
 </project>
