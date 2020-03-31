@@ -10,6 +10,19 @@ An easy to use client for the [Flagr](https://checkr.github.io/flagr) feature fl
 
 For more in depth information visit [Flagr official docs](https://checkr.github.io/flagr/#/home).
 
+## Installation
+
+Add the following dependency to `pom.xml`:
+```xml
+<dependencies>
+    <dependency>
+        <groupId>com.tradeshift</groupId>
+        <artifactId>flagr-java</artifactId>
+        <version>0.9.0</version>
+    </dependency>
+</dependencies>
+```
+
 ## Usage
 
 Assume there's a flag called `color` for changing the blue background color of a page for a red one for 10% of the clients. Here is what the code for evaluating this flag would look like:
