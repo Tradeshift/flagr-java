@@ -13,7 +13,7 @@ public class EvaluationContext {
     private Long flagID;
     private String flagKey;
 
-    EvaluationContext(String flagKey) {
+    public EvaluationContext(String flagKey) {
         this.setFlagKey(flagKey);
     }
 

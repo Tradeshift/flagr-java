@@ -32,7 +32,7 @@ public class Flagr {
     private OkHttpClient http;
 
     /* creates a new instance of the client. */
-    Flagr(String host) {
+    public Flagr(String host) {
         this.host = host;
         this.http = new OkHttpClient();
     }
