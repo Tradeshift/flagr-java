@@ -18,7 +18,7 @@ Add the following dependency to `pom.xml`:
     <dependency>
         <groupId>com.tradeshift</groupId>
         <artifactId>flagr-java</artifactId>
-        <version>0.9.0</version>
+        <version>0.9.1</version>
     </dependency>
 </dependencies>
 ```
