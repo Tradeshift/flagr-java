@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
 import com.google.gson.Gson;
 import okhttp3.MediaType;
@@ -31,10 +32,23 @@ public class Flagr {
     private String host;
     private OkHttpClient http;
 
-    /* creates a new instance of the client. */
+    /* Creates a new instance of the client with default config for HTTP client */
     public Flagr(String host) {
         this.host = host;
         this.http = new OkHttpClient();
+    }
+
+    /**
+     * Creates a new instance of the client with custom configs for the HTTP client.
+     *
+     * @param config
+     */
+    public Flagr(FlagrConfig config) {
+        this.host = config.getHost();
+        this.http = new OkHttpClient.Builder()
+                .connectTimeout(config.getConnectTimeout(), TimeUnit.MILLISECONDS)
+                .readTimeout(config.getReadTimeout(), TimeUnit.MILLISECONDS)
+                .build();
     }
 
     private String serialize(EvaluationContext obj) {
