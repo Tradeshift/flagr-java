@@ -1,7 +1,6 @@
 package com.tradeshift.flagr;
 
 import java.io.IOException;
-import java.io.Reader;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -13,7 +12,7 @@ import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
-import okhttp3.Response;
+import okhttp3.ResponseBody;
 
 /*
  * Talks to Flagr API on host.
@@ -51,48 +50,22 @@ public class Flagr {
                 .build();
     }
 
-    private String serialize(EvaluationContext obj) {
-        Gson gson = new Gson();
-        return gson.toJson(obj);
-    }
-
-    private EvaluationResponse deserializeResponse(Reader json) throws FlagrException {
-        Gson gson = new Gson();
-        EvaluationResponse response = gson.fromJson(json, EvaluationResponse.class);
-        if (response == null) {
-            throw new FlagrException("Unable to parse json response");
-        }
-        return response;
-    }
-
-    private Reader doPost(String jsonContext) throws IOException {
-        Request request = new Request.Builder()
-                .url(this.host + EVALUATION_ENDPOINT)
-                .post(RequestBody.create(JSON, jsonContext))
-                .build();
-        Response response = http.newCall(request).execute();
-
-        return response.body().charStream();
-    }
-
     /*
      * Calls evaluation API with the specified context
      * <p>
      * the context needs to specify a flagID or FlagKey
      * */
     public EvaluationResponse evaluate(EvaluationContext context) {
-        Reader responseBody;
+        EvaluationResponse evalResponse;
         String jsonContext = serialize(context);
         try {
-            responseBody = doPost(jsonContext);
+            evalResponse = doPost(jsonContext);
         } catch (IOException e) {
             throw new FlagrException(
                     "Unable to reach flagr",
                     Collections.singletonList(e.getMessage())
             );
         }
-        EvaluationResponse evalResponse = deserializeResponse(responseBody);
-
         // when the id is null it means Flagr couldn't find it.
         if (evalResponse.getFlagID() == null) {
             String message = evalResponse.getEvalDebugLog().getMsg();
@@ -137,5 +110,39 @@ public class Flagr {
     public <T> Optional<T> evaluateVariantAttachment(EvaluationContext context, Class<T> classOfT) throws FlagrException {
         EvaluationResponse evalResponse = this.evaluate(context);
         return Optional.ofNullable(evalResponse.getVariantAttachment(classOfT));
+    }
+
+    private String serialize(EvaluationContext obj) {
+        Gson gson = new Gson();
+        return gson.toJson(obj);
+    }
+
+    private EvaluationResponse doPost(String jsonContext) throws IOException {
+        Request request = generateRequest(jsonContext);
+        try(ResponseBody responseBody = executeRequestAndGetResponseBody(request)) {
+            return deserializeResponseBody(responseBody);
+        }
+    }
+
+    private Request generateRequest(String jsonContext) {
+        return new Request.Builder()
+                .url(host + EVALUATION_ENDPOINT)
+                .post(RequestBody.create(JSON, jsonContext))
+                .build();
+    }
+
+    private ResponseBody executeRequestAndGetResponseBody(Request request) throws IOException {
+        return http.newCall(request)
+                .execute()
+                .body();
+    }
+
+    private EvaluationResponse deserializeResponseBody(ResponseBody responseBody) throws FlagrException {
+        Gson gson = new Gson();
+        EvaluationResponse response = gson.fromJson(responseBody.charStream(), EvaluationResponse.class);
+        if (response == null) {
+            throw new FlagrException("Unable to parse json response");
+        }
+        return response;
     }
 }
