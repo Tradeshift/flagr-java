@@ -28,6 +28,8 @@ public class Flagr {
             Arrays.asList("on", "enabled", "true")
     );
 
+    private static final Gson gson = new Gson();
+
     private String host;
     private OkHttpClient http;
 
@@ -113,7 +115,6 @@ public class Flagr {
     }
 
     private String serialize(EvaluationContext obj) {
-        Gson gson = new Gson();
         return gson.toJson(obj);
     }
 
@@ -138,7 +139,6 @@ public class Flagr {
     }
 
     private EvaluationResponse deserializeResponseBody(ResponseBody responseBody) throws FlagrException {
-        Gson gson = new Gson();
         EvaluationResponse response = gson.fromJson(responseBody.charStream(), EvaluationResponse.class);
         if (response == null) {
             throw new FlagrException("Unable to parse json response");
