@@ -6,6 +6,8 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 
 public class EvaluationResponse {
+    private static final Gson gson = new Gson();
+
     private Long flagID;
     private String flagKey;
     private Long flagSnapshotID;
@@ -19,7 +21,6 @@ public class EvaluationResponse {
     private EvalDebugLog evalDebugLog;
 
     public <T> EvaluationResponse(Long flagID, String flagKey, Long flagSnapshotID, Long segmentID, Long variantID, String variantKey, T variantAttachment, EvaluationContext evaluationContext, Timestamp timestamp, EvalDebugLog evalDebugLog) {
-        Gson gson = new Gson();
         this.variantAttachment = gson.toJsonTree(variantAttachment);
 
         this.flagID = flagID;
@@ -70,7 +71,6 @@ public class EvaluationResponse {
     }
 
     public <T> T getVariantAttachment(Class<T> variantClass) {
-        Gson gson = new Gson();
         T variant = gson.fromJson(variantAttachment, variantClass);
         return variant;
     }

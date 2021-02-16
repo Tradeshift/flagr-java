@@ -4,6 +4,8 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 
 public class EvaluationContext {
+    private static final Gson gson = new Gson();
+
     // entityID is used to to evaluate the flag.
     private String entityID;
 
@@ -34,13 +36,11 @@ public class EvaluationContext {
     }
 
     public <T> T getEntityContext(Class<T> entityClass) {
-        Gson gson = new Gson();
         T entity = gson.fromJson(entityContext, entityClass);
         return entity;
     }
 
     public <T> void setEntityContext(T entityContext) {
-        Gson gson = new Gson();
         this.entityContext = gson.toJsonTree(entityContext);
     }
 
