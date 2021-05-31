@@ -1,0 +1,15 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: flagr-java
+  description: |
+    An easy to use client for the [Flagr](https://checkr.github.io/flagr) feature flag service.
+  annotations:
+    github.com/project-slug: Tradeshift/flagr-java
+  tags:
+    - java
+    - flagr
+spec:
+  type: library
+  owner: developer-productivity
+  lifecycle: production
