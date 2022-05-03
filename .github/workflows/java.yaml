@@ -11,3 +11,7 @@ jobs:
         with:
           java-version: 13
       - run: mvn compile test
+      - name: Publish
+        run: mvn deploy
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
