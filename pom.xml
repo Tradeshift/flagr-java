@@ -100,26 +100,8 @@
   </build>
   <developers>
     <developer>
-      <name>Benjamin Nørgaard</name>
-      <email>benjamin.noergaard@tradeshift.com</email>
-      <organization>Tradeshift</organization>
-      <organizationUrl>http://www.tradeshift.com</organizationUrl>
-    </developer>
-    <developer>
-      <name>Francisco Alves</name>
-      <email>francisco.alves@tradeshift.com</email>
-      <organization>Tradeshift</organization>
-      <organizationUrl>http://www.tradeshift.com</organizationUrl>
-    </developer>
-    <developer>
-      <name>Pavel Gonchukov</name>
-      <email>pavel.gonchukov@tradeshift.com</email>
-      <organization>Tradeshift</organization>
-      <organizationUrl>http://www.tradeshift.com</organizationUrl>
-    </developer>
-    <developer>
-      <name>Søren Mathiasen</name>
-      <email>smo@tradeshift.com</email>
+      <name>Jesper Terkelsen</name>
+      <email>jnt@tradeshift.com</email>
       <organization>Tradeshift</organization>
       <organizationUrl>http://www.tradeshift.com</organizationUrl>
     </developer>
