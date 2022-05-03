@@ -9,12 +9,12 @@
   <url>https://github.com/Tradeshift/flagr-java</url>
   <distributionManagement>
     <repository>
-      <id>ossrh</id>
-      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+      <id>tradeshift-upload-maven-central</id>
+      <url>https://maven-upload.tradeshift.net/content/repositories/central/</url>
     </repository>
     <snapshotRepository>
-      <id>ossrh-staging</id>
-      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+      <id>tradeshift-upload-snapshots</id>
+      <url>https://maven-upload.tradeshift.net/content/groups/tradeshift-public-snapshots/</url>
     </snapshotRepository>
   </distributionManagement>
   <licenses>
