@@ -15,8 +15,8 @@ jobs:
         run: mvn -e deploy
         env:
           GITHUB_TOKEN: ${{ github.token }}
-          MAVEN_SETTINGS_B64: ${{ secrets.MAVEN_SETTINGS }}
+          MAVEN_OPTS: ${{ secrets.MAVEN_SETTINGS }}
           MAVEN_SETTINGS_SECURITY_B64: ${{ secrets.MAVEN_SECURITY }}
           MAVEN_P12_B64: ${{ secrets.MAVEN_P12 }}
-          MAVEN_P12_PASSWORD: ${{ secrets.MAVEN_P12_PASSWORD }}
+          P12_PASSWORD: ${{ secrets.MAVEN_P12_PASSWORD }}
           ROOTCA_B64: ${{ secrets.CACERT }}
