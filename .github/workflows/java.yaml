@@ -12,7 +12,7 @@ jobs:
           java-version: 13
       - run: mvn compile test
       - name: Publish
-        run: mvn deploy
+        run: mvn -e deploy
         env:
           GITHUB_TOKEN: ${{ github.token }}
           MAVEN_SETTINGS_B64: ${{ secrets.MAVEN_SETTINGS }}
