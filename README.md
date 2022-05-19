@@ -102,3 +102,14 @@ if (flagr.evaluateEnabled(new EvaluationContext("onOffFlag"))) {
 ## Versioning
 
 We use [SemVer](http://semver.org/) for versioning.
+
+## Releasing
+
+This project is released directly to maven central.
+
+As a Tradeshift employee you must do the following
+
+1. Get access to maven central by [issuing a ticket](https://central.sonatype.org/publish/publish-guide/#create-a-ticket-with-sonatype) on the [sonatype jira project](https://issues.sonatype.org/)
+2. Run `mvn deploy` from your local machine, which include signing the package with your GPG key
+3. Promote the build via their [process for releasing to central](https://central.sonatype.org/publish/publish-guide/#releasing-to-central)
+
