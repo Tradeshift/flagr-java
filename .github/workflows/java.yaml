@@ -11,7 +11,7 @@ jobs:
         with:
           java-version: 13
           distribution: 'zulu'
-      - name: Set up Maven
+      - name: Set up Maven  
         uses: tradeshift/actions-setup-maven@v4.4
         with:
           maven-version: 3.6.3
