@@ -11,5 +11,5 @@ metadata:
     - flagr
 spec:
   type: library
-  owner: developer-productivity
+  owner: platform-ops
   lifecycle: production
