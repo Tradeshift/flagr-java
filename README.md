@@ -113,3 +113,4 @@ As a Tradeshift employee you must do the following
 2. Run `mvn deploy` from your local machine, which include signing the package with your GPG key
 3. Promote the build via their [process for releasing to central](https://central.sonatype.org/publish/publish-guide/#releasing-to-central)
 
+Test change (dont merge)
